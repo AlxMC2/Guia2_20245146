@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Guitar } from './components/Guitar'
@@ -7,6 +7,9 @@ import { db } from './data/db'
 export const App = () => {
     const [data, setData] = useState(db)
     const [cart, setCart] = useState([])
+    useEffect(()=>(
+        localStorage.setItem('cart',JSON.stringify(cart))
+    ),[cart])
 
     function addToCart(guitar) {
         const itemIndex = cart.findIndex((item) => guitar.id === item.id)
@@ -19,7 +22,6 @@ export const App = () => {
             updatedCart[itemIndex].quantity++;
             setCart(updatedCart);
         }
-        saveCartToLocalStorage();
 
     }
 
@@ -32,9 +34,6 @@ export const App = () => {
         return total;
     }
 
-    function saveCartToLocalStorage(){
-        localStorage.setItem('cart',JSON.stringify(cart))
-    }
 
     return (
         <>
