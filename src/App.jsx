@@ -6,13 +6,13 @@ import { db } from './data/db'
 
 export const App = () => {
 
-    function initialCart(){
+    /*function initialCart(){
         const localStorageCart=localStorage.getItem('cart');
         return localStorageCart?JSON.parse(localStorageCart):[]
-    }
+    }*/
 
     const [data, setData] = useState(db)
-    const [cart, setCart] = useState(initialCart)
+    const [cart, setCart] = useState([])
     useEffect(()=>(
         localStorage.setItem('cart',JSON.stringify(cart))
     ),[cart])
