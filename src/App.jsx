@@ -5,8 +5,14 @@ import { Guitar } from './components/Guitar'
 import { db } from './data/db'
 
 export const App = () => {
+
+    function initialCart(){
+        const localStorageCart=localStorage.getItem('cart');
+        return localStorageCart?JSON.parse(localStorageCart):[]
+    }
+
     const [data, setData] = useState(db)
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState(initialCart)
     useEffect(()=>(
         localStorage.setItem('cart',JSON.stringify(cart))
     ),[cart])
