@@ -54,6 +54,12 @@ export const App = () => {
         setCart(updatedCart);
     }
 
+    function deleteProduct(guitar) {
+        const itemIndex = cart.findIndex((item) => guitar.id === item.id);
+        const updatedCart = cart.filter(guitar=>guitar.id!==itemIndex);
+        setCart(updatedCart);
+    }
+
     function emptyCart() {
         const updatedCart = [];
         setCart(updatedCart);
@@ -62,7 +68,7 @@ export const App = () => {
 
     return (
         <>
-            <Header cart={cart} total={calculateTotal()} increaseQuantityCart={increaseQuantityCart} decreaseQuantityCart={decreaseQuantityCart} emptyCart={emptyCart}/>
+            <Header cart={cart} total={calculateTotal()} increaseQuantityCart={increaseQuantityCart} decreaseQuantityCart={decreaseQuantityCart} emptyCart={emptyCart} deleteProduct={deleteProduct}/>
             <main className="container-xl mt-5">
                 <h2 className="text-center">Nuestra Colección</h2>
 

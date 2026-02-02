@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Header = ({ cart, total, increaseQuantityCart, decreaseQuantityCart, emptyCart }) => {
+export const Header = ({ cart, total, increaseQuantityCart, decreaseQuantityCart, emptyCart, deleteProduct }) => {
     return (
         <header className="py-5 header">
             <div className="container-xl">
@@ -60,6 +60,7 @@ export const Header = ({ cart, total, increaseQuantityCart, decreaseQuantityCart
                                                         <button
                                                             className="btn btn-danger"
                                                             type="button"
+                                                            onClick={()=>deleteProduct(guitar)}
                                                         >
                                                             X
                                                         </button>
@@ -70,7 +71,7 @@ export const Header = ({ cart, total, increaseQuantityCart, decreaseQuantityCart
                                     </table>)
                                 }
                                 <p className="text-end">Total pagar: <span className="fw-bold">${total}</span></p>
-                                <button className="btn btn-dark w-100 mt-3 p-2">Vaciar Carrito</button>
+                                <button className="btn btn-dark w-100 mt-3 p-2" onClick={()=>emptyCart()}>Vaciar Carrito</button>
                             </div>
                         </div>
                     </nav>
