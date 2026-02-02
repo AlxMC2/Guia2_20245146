@@ -1,0 +1,55 @@
+import React, { useState } from 'react'
+import { Header } from './components/Header'
+import { Footer } from './components/Footer'
+import { Guitar } from './components/Guitar'
+import { db } from './data/db'
+
+export const App = () => {
+    const [data, setData] = useState(db)
+    const [cart, setCart] = useState([])
+
+    function addToCart(guitar) {
+        const itemIndex = cart.findIndex((item) => guitar.id === item.id)
+        console.log(itemIndex);
+        if (itemIndex === -1) {//Esa artículo aún no existe en el carrito
+            guitar.quantity=1;
+            setCart([...cart, guitar])
+        } else {//Si el artículo ya existía
+            const updatedCart=[...cart]; //Creando una copia de la variable de estado
+            updatedCart[itemIndex].quantity++;
+            setCart(updatedCart);
+        }
+        saveCartToLocalStorage();
+
+    }
+
+    function calculateTotal(){
+        /*let total=0;
+        for (const guitar of cart) {
+            total+=guitar.price * guitar.quantity
+        }*/
+       let total = cart.reduce((total,item)=>total+item.price*item.quantity,0)
+        return total;
+    }
+
+    function saveCartToLocalStorage(){
+        localStorage.setItem('cart',JSON.stringify(cart))
+    }
+
+    return (
+        <>
+            <Header cart={cart} total={calculateTotal()}/>
+            <main className="container-xl mt-5">
+                <h2 className="text-center">Nuestra Colección</h2>
+
+                <div className="row mt-5">
+                    {data.map((guitar) => (
+                        <Guitar guitar={guitar} key={guitar.id} addToCart={addToCart} />
+                    ))}
+
+                </div>
+            </main>
+            <Footer />
+        </>
+    )
+}
