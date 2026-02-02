@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Header = ({ cart, total }) => {
+export const Header = ({ cart, total, increaseQuantityCart, decreaseQuantityCart, emptyCart }) => {
     return (
         <header className="py-5 header">
             <div className="container-xl">
@@ -43,6 +43,7 @@ export const Header = ({ cart, total }) => {
                                                         <button
                                                             type="button"
                                                             className="btn btn-dark"
+                                                            onClick={()=>decreaseQuantityCart(guitar)}
                                                         >
                                                             -
                                                         </button>
@@ -50,6 +51,7 @@ export const Header = ({ cart, total }) => {
                                                         <button
                                                             type="button"
                                                             className="btn btn-dark"
+                                                            onClick={()=>increaseQuantityCart(guitar)}
                                                         >
                                                             +
                                                         </button>
