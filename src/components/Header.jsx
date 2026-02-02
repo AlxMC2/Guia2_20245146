@@ -60,7 +60,7 @@ export const Header = ({ cart, total, increaseQuantityCart, decreaseQuantityCart
                                                         <button
                                                             className="btn btn-danger"
                                                             type="button"
-                                                            onClick={()=>deleteProduct(guitar)}
+                                                            onClick={()=>deleteProduct(guitar.id)}
                                                         >
                                                             X
                                                         </button>

@@ -54,9 +54,8 @@ export const App = () => {
         setCart(updatedCart);
     }
 
-    function deleteProduct(guitar) {
-        const itemIndex = cart.findIndex((item) => guitar.id === item.id);
-        const updatedCart = cart.filter(guitar=>guitar.id!==itemIndex);
+    function deleteProduct(id) {
+        const updatedCart = cart.filter(guitar=>guitar.id!==id);
         setCart(updatedCart);
     }
 
